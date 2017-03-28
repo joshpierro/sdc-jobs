@@ -7,6 +7,8 @@ import { AngularFireModule } from 'angularfire2';
 import { MaterialModule } from '@angular/material';
 import { JobsComponent } from './jobs/jobs.component';
 import 'hammerjs';
+import { FiltersComponent } from './filters/filters.component';
+import { FeaturedComponent } from './featured/featured.component';
 
 // Must export the config
 export const firebaseConfig = {
@@ -21,7 +23,9 @@ export const firebaseConfig = {
 @NgModule({
   declarations: [
     AppComponent,
-    JobsComponent
+    JobsComponent,
+    FiltersComponent,
+    FeaturedComponent
   ],
   imports: [
     BrowserModule,

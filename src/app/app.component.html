@@ -1,4 +1,31 @@
-<md-toolbar  color="primary">
-  {{title}}
+<md-toolbar color="primary">
+  <span>{{title}}</span>
+  <!-- This fills the remaining space of the current row -->
+  <span class="spacer"></span>
+  <span>
+    <button md-button (click)="sidenav.open()">
+    Filter Jobs
+    </button>
+  </span>
 </md-toolbar>
-<app-jobs></app-jobs>
+
+<md-sidenav-container class="sidenav-container">
+  <md-sidenav #sidenav class="sidenav">
+    <app-filters></app-filters>
+  </md-sidenav>
+
+  <div class="sidenav-content">
+    <div class="app-container">
+      <div style="width:80%;">
+        <div>
+          <app-jobs></app-jobs>
+        </div>
+      </div>
+      <div style="width:20%;">
+        <app-featured></app-featured>
+      </div>
+    </div>
+  </div>
+
+</md-sidenav-container>
+
