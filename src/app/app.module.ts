@@ -1,14 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
-import { AppComponent } from './app.component';
-import { AngularFireModule } from 'angularfire2';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { HttpModule,JsonpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
+import {AngularFireModule, FirebaseRef} from 'angularfire2';
+import { AppComponent } from './app.component';
 import { JobsComponent } from './jobs/jobs.component';
-import 'hammerjs';
 import { FiltersComponent } from './filters/filters.component';
 import { FeaturedComponent } from './featured/featured.component';
+import {LocationService} from './location.service';
+import 'hammerjs';
+
 
 // Must export the config
 export const firebaseConfig = {
@@ -31,10 +33,14 @@ export const firebaseConfig = {
     BrowserModule,
     FormsModule,
     HttpModule,
+    JsonpModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [LocationService],
+  bootstrap: [AppComponent,[]]
 })
-export class AppModule { }
+
+export class AppModule {
+}

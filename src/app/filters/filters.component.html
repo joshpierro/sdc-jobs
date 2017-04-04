@@ -1,5 +1,48 @@
-<md-card style="margin-left: 5px;margin-right: 10px;">
-  <md-grid-list cols="1" rowHeight ="1:1">
-    <h4>Filters</h4>
-  </md-grid-list>
+<md-card style="margin:1rem;">
+    <md-list>
+      <md-list-item>
+        <h3 md-line>
+          <strong>Minimum Salary</strong>
+        </h3>
+        <p md-line>
+          <md-input-container style="width:90%">
+            <input mdInput
+                   type="number"
+                   placeholder=""
+                   [(ngModel)]="salary"
+                   (ngModelChange)="setSalary()">
+          </md-input-container>
+        </p>
+      </md-list-item>
+      <md-list-item>
+        <h3 md-line  style="margin-top:30px;">
+          <strong>Location</strong>
+        </h3>
+        <p md-line>
+            <md-select placeholder=""
+                       [(ngModel)]="distance"
+                       (ngModelChange)="setDistance()"
+                       style="width:30%;padding-top:20px">
+              <md-option *ngFor="let distance of distances"
+                         [value]="distance.distance">
+                {{ distance.text}}
+              </md-option>
+            </md-select>
+         <!-- {{selectedDistance.distance}}-->
+          <md-input-container style="width: 60%;">
+            <input type="text" mdInput
+                   [formControl]="placeControl"
+                   [mdAutocomplete]="auto"
+                   [(ngModel)]="locationText"
+                   (ngModelChange)="searchLocation()">
+          </md-input-container>
+          <md-autocomplete #auto="mdAutocomplete" [displayWith]="setLocation">
+              <md-option *ngFor="let place of filteredPlaces | async"
+                         [value]="place">
+                {{ place.label }}
+              </md-option>
+          </md-autocomplete>
+        </p>
+      </md-list-item>
+    </md-list>
 </md-card>

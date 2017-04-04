@@ -2,8 +2,9 @@
   <h4>
     Latest Jobs
   </h4>
-  <md-list *ngFor="let job of jobs | async" style="border:solid 1px #e0e0e0;" dense>
-    <md-list-item>  <strong>{{job.job}} </strong>  - {{job.company}} - {{job.location.city}}, {{job.location.state}} -  <strong>{{job.salary | currency:'USD':true}}</strong></md-list-item>
+  <md-list *ngFor="let job of jobs | async" style="border:solid 1px #e0e0e0;">
+    <md-list-item>
+      <strong>{{job.job}} </strong>  - {{job.company}} - {{job.location.city}}, {{job.location.state}} -  <strong>{{job.salary | currency:'USD':true}}</strong>
+    </md-list-item>
   </md-list>
 </md-card>
-
