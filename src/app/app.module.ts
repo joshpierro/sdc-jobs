@@ -1,16 +1,17 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-import { HttpModule,JsonpModule } from '@angular/http';
-import { MaterialModule } from '@angular/material';
+import {BrowserModule } from '@angular/platform-browser';
+import {NgModule } from '@angular/core';
+import {FormsModule,ReactiveFormsModule } from '@angular/forms';
+import {HttpModule,JsonpModule } from '@angular/http';
+import {MaterialModule } from '@angular/material';
 import {AngularFireModule, FirebaseRef} from 'angularfire2';
-import { AppComponent } from './app.component';
-import { JobsComponent } from './jobs/jobs.component';
-import { FiltersComponent } from './filters/filters.component';
-import { FeaturedComponent } from './featured/featured.component';
+import {AppComponent } from './app.component';
+import {JobsComponent } from './jobs/jobs.component';
+import {FiltersComponent } from './filters/filters.component';
+import {FeaturedComponent } from './featured/featured.component';
 import {LocationService} from './location.service';
+import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {InputTextModule,DataTableModule,DataListModule,ButtonModule,DialogModule,SharedModule} from 'primeng/primeng';
 import 'hammerjs';
-
 
 // Must export the config
 export const firebaseConfig = {
@@ -31,12 +32,21 @@ export const firebaseConfig = {
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    NoopAnimationsModule,
     FormsModule,
     HttpModule,
     JsonpModule,
     AngularFireModule.initializeApp(firebaseConfig),
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserModule,
+    InputTextModule,
+    DataTableModule,
+    DataListModule,
+    ButtonModule,
+    DialogModule,
+    SharedModule
   ],
   providers: [LocationService],
   bootstrap: [AppComponent,[]]

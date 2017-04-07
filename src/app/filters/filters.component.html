@@ -1,48 +1,52 @@
 <md-card style="margin:1rem;">
-    <md-list>
-      <md-list-item>
-        <h3 md-line>
+  <div class="ui-grid ui-grid-responsive ui-fluid" style="padding-bottom: 35px;">
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-12">
+        <h3>
           <strong>Minimum Salary</strong>
         </h3>
-        <p md-line>
-          <md-input-container style="width:90%">
-            <input mdInput
-                   type="number"
-                   placeholder=""
-                   [(ngModel)]="salary"
-                   (ngModelChange)="setSalary()">
-          </md-input-container>
-        </p>
-      </md-list-item>
-      <md-list-item>
-        <h3 md-line  style="margin-top:30px;">
+        <md-input-container style="width:95%">
+          <input mdInput
+                 type="number"
+                 placeholder=""
+                 [(ngModel)]="salary"
+                 (ngModelChange)="setSalary()">
+        </md-input-container>
+      </div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-12">
+        <h3 style="margin-top:30px;">
           <strong>Location</strong>
         </h3>
-        <p md-line>
-            <md-select placeholder=""
-                       [(ngModel)]="distance"
-                       (ngModelChange)="setDistance()"
-                       style="width:30%;padding-top:20px">
-              <md-option *ngFor="let distance of distances"
-                         [value]="distance.distance">
-                {{ distance.text}}
-              </md-option>
-            </md-select>
-         <!-- {{selectedDistance.distance}}-->
-          <md-input-container style="width: 60%;">
-            <input type="text" mdInput
-                   [formControl]="placeControl"
-                   [mdAutocomplete]="auto"
-                   [(ngModel)]="locationText"
-                   (ngModelChange)="searchLocation()">
-          </md-input-container>
-          <md-autocomplete #auto="mdAutocomplete" [displayWith]="setLocation">
-              <md-option *ngFor="let place of filteredPlaces | async"
-                         [value]="place">
-                {{ place.label }}
-              </md-option>
-          </md-autocomplete>
-        </p>
-      </md-list-item>
-    </md-list>
+        <md-select placeholder=""
+                   [(ngModel)]="distance"
+                   (ngModelChange)="setDistance()"
+                   style="width:95%;padding-top:10px">
+          <md-option *ngFor="let distance of distances"
+                     [value]="distance.distance">
+            {{ distance.text}}
+          </md-option>
+        </md-select>
+      </div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-12">
+        <md-input-container style="width:95%;margin-top: 24px">
+        <input type="text" mdInput
+               #locationInput
+               [formControl]="placeControl"
+               [(ngModel)]="locationText"
+               (ngModelChange)="searchLocation(locationInput)"
+                placeholder="enter city, state or zip">
+        </md-input-container>
+        <!--<md-autocomplete #auto="mdAutocomplete" [displayWith]="setLocation">-->
+          <!--<md-option *ngFor="let place of filteredPlaces | async"-->
+                     <!--[value]="place">-->
+            <!--{{ place.label }}-->
+          <!--</md-option>-->
+        <!--</md-autocomplete>-->
+      </div>
+    </div>
+  </div>
 </md-card>

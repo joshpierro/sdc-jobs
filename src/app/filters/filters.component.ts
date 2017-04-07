@@ -6,6 +6,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import {FormControl} from '@angular/forms';
 import {Distance} from "../models/distance";
+import {InputTextModule} from 'primeng/primeng';
 
 var context = this;
 
@@ -23,6 +24,7 @@ export class FiltersComponent implements OnInit {
   places:Place[];
   filteredPlaces: Observable<Place[]>;
   distances:Distance[];
+  document:any;
 
   distance:number;
   @Input() selectedDistance:number;
@@ -51,6 +53,8 @@ export class FiltersComponent implements OnInit {
     this.distance = this.distances[4].distance;
     this.places = [];
     this.locationText = '';
+
+
     context = this;
   }
 
@@ -63,17 +67,25 @@ export class FiltersComponent implements OnInit {
   }
 
 
-  searchLocation() {
+  searchLocation(input:any) {
     if(this.locationText.length>2){
-      return this.locationService.getLocation()
-        .subscribe(
-          (data) => {
-            this.places = data;
-            return data;
-          },
-          (error) => {
-            console.log(error);
-          });
+      let g = window["google"];
+      let a = new g.maps.places.Autocomplete(
+        input,
+        {types: ['geocode']}
+      );
+      let place;
+      a.addListener('place_changed', function(){
+        place =  a.getPlace();
+        let result =  {
+               lat: place.geometry.location.lat(),
+               lon: place.geometry.location.lng(),
+               address: place.address_components,
+               label: place.formatted_address
+             }
+        context.selectedPlace = result;
+        context.selectedPlaceChange.emit(result);
+      });
     }
   }
 
@@ -96,7 +108,11 @@ export class FiltersComponent implements OnInit {
     return place ? place.label : '';
   }
   filter(label: string): Place[] {
-    return this.places.filter(place => new RegExp(label, 'gi').test(place.label));
+    label = label.replace(/[^a-zA-Z ]/g, "");
+    return []
+  /*  return this.places.filter(place =>
+      new RegExp(label, 'gi').test(place.label)
+    );*/
   }
 
 }

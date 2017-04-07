@@ -4,7 +4,8 @@ import {Jsonp, URLSearchParams, Http, Response} from "@angular/http";
 @Injectable()
 export class LocationService {
 
-  url = 'http://nominatim.openstreetmap.org/search?q=cooperstown&format=json&polygon=0&addressdetails=1';
+  url:string;
+  autocomplete:any;
 
   constructor(private jsonp: Jsonp, private http: Http) {
   }
@@ -29,25 +30,11 @@ export class LocationService {
     return dist
   }
 
-  getLocation() {
-    return this.http.get(this.url)
-      .map((res: Response) => {
-        let response = res.json();
-        return response.map((item) => {
-          let city = item.address.city ? item.address.city : '';
-          city = item.address.village ? item.address.village : city;
-          city = item.address.hamlet ? item.address.hamlet : city;
-          let state = item.address.state ? item.address.state : '';
-          state = item.address.state_district ? item.address.state_district : state;
-          return {
-            lat: item.lat,
-            lon: item.lon,
-            address: item.address,
-            label: city + ', ' + state
-          }
-        })
-      });
+  getLocation(location:string,input:any) {
   }
 
+  setLocation(){
+
+  }
 
 }
