@@ -8,9 +8,11 @@
     </p-header>-->
     <ng-template let-job pTemplate="item">
       <div class="ui-grid ui-grid-responsive ui-fluid" style="font-size:16px;padding:20px;border-bottom:1px solid #D5D5D5;">
-        <div class="ui-grid-row">
+        <div class="ui-grid-row row-link"
+             routerLink="/job/{{job.$key}}"
+             routerLinkActive="active">
           <div class="ui-grid-col-4">
-            <strong>{{job.job}} </strong>
+              <strong>{{job.job}} </strong>
           </div>
           <div class="ui-grid-col-4">
             {{job.company}}

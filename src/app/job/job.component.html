@@ -1,0 +1,41 @@
+<md-toolbar color="primary">
+  <span>
+    <button md-raised-button color="primary"
+            routerLink="/home"
+            routerLinkActive="active">
+      <i class="material-icons">arrow_back</i>
+    </button>
+  </span>
+  <span class="spacer"></span>
+  <span style="margin-right: 1rem;">
+    <h3>{{title}}</h3>
+  </span>
+</md-toolbar>
+<div class="job-container">
+  <md-card>
+    <div class="ui-grid ui-grid-responsive ui-fluid">
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-6">
+         <strong>
+           <span style="font-size: 24px;">{{ (job | async)?.job }}</span>
+           -
+           <span style="font-size: 22px;">{{ (job | async)?.company }}</span>
+         </strong>
+        </div>
+        <div class="ui-grid-col-6">
+          <a href="">Apply Here</a>
+        </div>
+      </div>
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-6">
+          <strong>{{ (job | async)?.salary | currency:'USD':true}}</strong>
+        </div>
+      </div>
+      <div class="ui-grid-row" style="margin-top: 25px;">
+        <div class="ui-grid-col-12">
+          {{ (job | async)?.description }}
+        </div>
+      </div>
+    </div>
+  </md-card>
+</div>

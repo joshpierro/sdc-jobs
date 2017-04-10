@@ -1,17 +1,23 @@
 import {BrowserModule } from '@angular/platform-browser';
-import {NgModule } from '@angular/core';
+import {NgModule, enableProdMode} from '@angular/core';
 import {FormsModule,ReactiveFormsModule } from '@angular/forms';
 import {HttpModule,JsonpModule } from '@angular/http';
 import {MaterialModule } from '@angular/material';
+import { RouterModule, Routes } from '@angular/router';
 import {AngularFireModule, FirebaseRef} from 'angularfire2';
 import {AppComponent } from './app.component';
 import {JobsComponent } from './jobs/jobs.component';
 import {FiltersComponent } from './filters/filters.component';
 import {FeaturedComponent } from './featured/featured.component';
 import {LocationService} from './location.service';
+import {JobsService} from './jobs.service';
 import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {InputTextModule,DataTableModule,DataListModule,ButtonModule,DialogModule,SharedModule} from 'primeng/primeng';
 import 'hammerjs';
+import { JobComponent } from './job/job.component';
+import { HomeComponent } from './home/home.component';
+
+enableProdMode();
 
 // Must export the config
 export const firebaseConfig = {
@@ -23,14 +29,30 @@ export const firebaseConfig = {
 };
 
 
+const appRoutes: Routes = [
+  { path: 'job/:jobId',      component: JobComponent },
+  {
+    path: 'jobs',
+    component: JobsComponent,
+    data: { title: 'Jobs' }
+  },
+  { path: '',
+    component: HomeComponent
+  },
+  { path: '**', component: HomeComponent }
+];
+
 @NgModule({
   declarations: [
     AppComponent,
     JobsComponent,
     FiltersComponent,
-    FeaturedComponent
+    FeaturedComponent,
+    JobComponent,
+    HomeComponent
   ],
   imports: [
+    RouterModule.forRoot(appRoutes),
     BrowserModule,
     BrowserAnimationsModule,
     NoopAnimationsModule,
@@ -48,7 +70,7 @@ export const firebaseConfig = {
     DialogModule,
     SharedModule
   ],
-  providers: [LocationService],
+  providers: [LocationService,JobsService],
   bootstrap: [AppComponent,[]]
 })
 
