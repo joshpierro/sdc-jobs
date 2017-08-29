@@ -1,0 +1,58 @@
+<md-toolbar color="primary">
+  <span>
+    <button md-raised-button color="primary"
+            routerLink="/companies"
+            routerLinkActive="active">
+      <i class="material-icons">arrow_back</i>
+    </button>
+  </span>
+  <span class="spacer"></span>
+  <span style="margin-right: 1rem;">
+    <h3>{{title}}</h3>
+  </span>
+</md-toolbar>
+<div class="company-container">
+  <md-card>
+    <div class="ui-grid ui-grid-responsive ui-fluid">
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-6">
+          <strong>
+            <span style="font-size: 24px;">
+             {{ (company | async)?.name }}
+            </span>
+          </strong>
+        </div>
+        <div class="ui-grid-col-6">
+        </div>
+      </div>
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-12">
+          <strong>
+               <span *ngFor="let location of (company | async)?.locations; let last = last">
+              {{location}}  <span *ngIf="!last"> - </span>
+            </span>
+          </strong>
+        </div>
+      </div>
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-12">
+          <strong>Has Jobs?</strong> {{ (company | async)?.hasJobs }}
+        </div>
+      </div>
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-12">
+          <strong>Hiring Manager</strong> {{ (company | async)?.hiringManager }}
+        </div>
+      </div>
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-6">
+        </div>
+      </div>
+      <div class="ui-grid-row" style="margin-top: 25px;">
+        <div [innerHTML]="(company | async)?.description"
+             class="ui-grid-col-12">
+        </div>
+      </div>
+    </div>
+  </md-card>
+</div>

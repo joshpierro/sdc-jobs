@@ -42,6 +42,7 @@ export class JobsComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges) {
     let place = this.place;
+
     this.firebaseRef.list('/jobs', {
       query: {
         orderByChild: 'salary',

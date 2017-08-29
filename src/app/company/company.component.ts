@@ -1,18 +1,20 @@
+import { Component, OnInit } from '@angular/core';
 import {JobsService} from "../jobs.service";
-;import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
+import {Company} from "../models/company";
 
 @Component({
-  selector: 'app-job',
-  templateUrl: './job.component.html',
-  styleUrls: ['./job.component.css']
+  selector: 'app-company',
+  templateUrl: './company.component.html',
+  styleUrls: ['./company.component.css']
 })
-export class JobComponent implements OnInit {
+export class CompanyComponent implements OnInit {
+
   routeParams:ActivatedRoute;
-  jobId:string;
+  companyId:string;
   title:string
   jobService:JobsService;
-  job;any;
+  company:Company;
 
   constructor(private route: ActivatedRoute, jobService:JobsService) {
     this.routeParams = route;
@@ -22,14 +24,8 @@ export class JobComponent implements OnInit {
 
   ngOnInit() {
     this.routeParams.params.subscribe(params => {
-      this.jobId = params['jobId'];
+      this.companyId = params['companyId'];
+      this.company = this.jobService.getCompany(params['companyId']);
     });
-
-    this.getRoute();
   }
-
-  getRoute():void{
-    this.job = this.jobService.getJob(this.jobId);
-    }
-
 }

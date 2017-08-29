@@ -14,5 +14,9 @@ export class JobsService {
     let path = 'jobs/' + jobId;
     return this.firebaseRef.object(path);
   }
+  getCompany(companyId){
+  let path = 'companies/'+ companyId;
+  return this.firebaseRef.object(path)
+  }
 
 }

@@ -23,7 +23,6 @@
          </strong>
         </div>
         <div class="ui-grid-col-6">
-          <a href="">Apply Here</a>
         </div>
       </div>
       <div class="ui-grid-row">
@@ -32,8 +31,8 @@
         </div>
       </div>
       <div class="ui-grid-row" style="margin-top: 25px;">
-        <div class="ui-grid-col-12">
-          {{ (job | async)?.description }}
+        <div [innerHTML]="(job | async)?.description"
+             class="ui-grid-col-12">
         </div>
       </div>
     </div>

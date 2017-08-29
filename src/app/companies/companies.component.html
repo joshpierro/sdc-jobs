@@ -1,0 +1,37 @@
+<md-toolbar color="primary">
+  <span>
+   Companies
+  </span>
+  <!-- This fills the remaining space of the current row -->
+  <span class="spacer"></span>
+  <span style="margin-right: 1rem;">
+    <h3>sdc-jobs</h3>
+  </span>
+</md-toolbar>
+<md-card>
+  <h4>
+    SDC Companies
+  </h4>
+  <p-dataList [value]="companiesList" [paginator]="true" [rows]="10">
+    <ng-template let-company pTemplate="item">
+      <div class="ui-grid ui-grid-responsive ui-fluid"
+           style="font-size:16px;padding:20px;border-bottom:1px solid #D5D5D5;">
+        <div class="ui-grid-row row-link"
+             routerLink="/company/{{company.companyId}}"
+             routerLinkActive="active">
+          <div class="ui-grid-col-3">
+            <strong>{{company.name}} </strong>
+          </div>
+          <div class="ui-grid-col-4" >
+            <span *ngFor="let location of company.locations">
+              {{location}}
+            </span>
+          </div>
+          <div class="ui-grid-col-4">
+            {{company.description}}
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </p-dataList>
+</md-card>

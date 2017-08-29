@@ -16,6 +16,8 @@ import {InputTextModule,DataTableModule,DataListModule,ButtonModule,DialogModule
 import 'hammerjs';
 import { JobComponent } from './job/job.component';
 import { HomeComponent } from './home/home.component';
+import {CompaniesComponent} from "./companies/companies.component";
+import {CompanyComponent} from "./company/company.component";
 
 enableProdMode();
 
@@ -30,11 +32,23 @@ export const firebaseConfig = {
 
 
 const appRoutes: Routes = [
-  { path: 'job/:jobId',      component: JobComponent },
+  { path: 'job/:jobId',
+    component: JobComponent,
+    data: { title: 'Job Detail' }
+  },
   {
     path: 'jobs',
     component: JobsComponent,
     data: { title: 'Jobs' }
+  },
+  {
+    path: 'companies',
+    component: CompaniesComponent,
+    data: { title: 'companies' }
+  },
+  { path: 'company/:companyId',
+    component: CompanyComponent,
+    data: { title: 'Company Detail' }
   },
   { path: '',
     component: HomeComponent
@@ -49,6 +63,8 @@ const appRoutes: Routes = [
     FiltersComponent,
     FeaturedComponent,
     JobComponent,
+    CompaniesComponent,
+    CompanyComponent,
     HomeComponent
   ],
   imports: [
